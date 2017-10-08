@@ -1,13 +1,11 @@
 package com.example.konstantin.news;
 
 import android.os.AsyncTask;
-import android.renderscript.Sampler;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,8 +71,8 @@ public class MainActivity extends AppCompatActivity {
         public StoriesHolder(View itemView) {
             super(itemView);
             imageItemView = (ImageView) itemView.findViewById(R.id.ivCover);
-            title = (TextView) itemView.findViewById(R.id.tvTitle);
-            sourse = (TextView) itemView.findViewById(R.id.tvSource);
+            title = (TextView) itemView.findViewById(R.id.tvCustomLayoutTitle);
+            sourse = (TextView) itemView.findViewById(R.id.tvCustomLayoutSource);
             time = (TextView) itemView.findViewById(R.id.tvTime);
 
         }

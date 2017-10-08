@@ -1,12 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clGaleryItem"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="15dp"
+    android:background="@android:color/white"
+    android:paddingBottom="10dp">
 
     <ImageView
         android:id="@+id/ivCustomLayout"
-        android:layout_width="match_parent"
+        android:layout_width="368dp"
         android:layout_height="250dp"
-        app:srcCompat="@drawable/h" />
-</LinearLayout>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:srcCompat="@drawable/h"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="0dp"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/tvCustomLayoutTitle"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="110dp"
+        android:paddingLeft="10dp"
+        android:text="Title of Article"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="23sp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="2dp" />
+
+    <TextView
+        android:id="@+id/tvCustomLayoutSource"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="10dp"
+        android:text="TextView"
+        android:textColor="@android:color/holo_blue_bright"
+        android:textColorLink="@android:color/holo_blue_bright"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCustomLayoutTitle" />
+
+    <TextView
+        android:id="@+id/tvCustomLayoutTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="TextView"
+        android:textColor="@color/colorBlack"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toRightOf="@+id/tvCustomLayoutSource"
+        app:layout_constraintTop_toBottomOf="@+id/tvCustomLayoutTitle" />
+</android.support.constraint.ConstraintLayout>
