@@ -13,6 +13,7 @@
         android:background="@color/colorBlack"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
+        app:navigationIcon="@android:drawable/ic_menu_agenda"
         app:title="@string/app_name" />
 
     <TabHost

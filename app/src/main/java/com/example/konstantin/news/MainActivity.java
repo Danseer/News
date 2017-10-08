@@ -6,7 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -17,6 +19,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Toolbar mActionBarToolbar = (Toolbar) findViewById(R.id.toolbar2);
+        setSupportActionBar(mActionBarToolbar);
 
         viewPager = (ViewPager) findViewById(R.id.viewPager);
 
@@ -60,6 +67,13 @@ public class MainActivity extends AppCompatActivity {
         setUpAdapter();
 
         new FetchItemTask().execute();
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_activity_main, menu);
+        return true;
     }
 
     private class StoriesHolder extends RecyclerView.ViewHolder {
@@ -123,7 +137,8 @@ public class MainActivity extends AppCompatActivity {
             imgUrl = Fetcher.getSlImg();
             setUpAdapter();
             setUpSliderAdapter();
-
+Timer timer=new Timer();
+            timer.scheduleAtFixedRate(new myTimerClass(),2000,4000);
         }
     }
 
@@ -134,6 +149,25 @@ public class MainActivity extends AppCompatActivity {
     private void setUpSliderAdapter() {
         viewPagerAdapter = new ViewPagerAdapter(MainActivity.this, imgUrl);
         viewPager.setAdapter(viewPagerAdapter);
+    }
+
+    public class myTimerClass extends TimerTask{
+
+        @Override
+        public void run() {
+
+            MainActivity.this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    int current= viewPager.getCurrentItem();
+
+                    if(current==imgUrl.size()-1) viewPager.setCurrentItem(0);
+                    else viewPager.setCurrentItem(current+1);
+                }
+            });
+
+
+        }
     }
 
 }
