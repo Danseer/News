@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
@@ -45,7 +46,15 @@ public class ViewPagerAdapter extends PagerAdapter {
 
 
         ImageView imageView=view.findViewById(R.id.ivCustomLayout);
+        TextView title=view.findViewById(R.id.tvCustomLayoutTitle);
+        TextView source=view.findViewById(R.id.tvCustomLayoutSource);
+        TextView date=view.findViewById(R.id.tvCustomLayoutTime);
+
         Picasso.with(context).load(utils.getSliderImageUrl()).into(imageView);
+        title.setText(utils.getTitle());
+        source.setText(utils.getSource());
+        date.setText(utils.getTime());
+
         ViewPager viewPager=(ViewPager) container;
         viewPager.addView(view,0);
         return view;

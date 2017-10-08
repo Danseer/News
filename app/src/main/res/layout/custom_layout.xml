@@ -16,31 +16,33 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:srcCompat="@drawable/h"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginRight="0dp"
         app:layout_constraintRight_toRightOf="parent" />
 
     <TextView
         android:id="@+id/tvCustomLayoutTitle"
-        android:layout_width="350dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="90dp"
+
+        android:alpha="0.7"
+        android:background="?android:attr/colorBackground"
         android:paddingLeft="10dp"
         android:text="Title of Article"
-        android:textColor="@android:color/holo_red_dark"
-        android:textSize="23sp"
+        android:textColor="@android:color/background_light"
+        android:textSize="24sp"
+        android:textStyle="bold|italic"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="2dp" />
+        tools:layout_editor_absoluteX="8dp" />
 
     <TextView
         android:id="@+id/tvCustomLayoutSource"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="2dp"
         android:layout_marginStart="2dp"
         android:layout_marginTop="10dp"
+        android:alpha="0.7"
+        android:background="?android:attr/colorBackground"
         android:paddingLeft="10dp"
         android:text="TextView"
         android:textColor="@android:color/holo_blue_bright"
@@ -56,8 +58,10 @@
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
+        android:alpha="0.7"
+        android:background="?android:attr/colorBackground"
         android:text="TextView"
-        android:textColor="@color/colorBlack"
+        android:textColor="@android:color/background_light"
         android:textSize="12sp"
         app:layout_constraintLeft_toRightOf="@+id/tvCustomLayoutSource"
         app:layout_constraintTop_toBottomOf="@+id/tvCustomLayoutTitle" />
