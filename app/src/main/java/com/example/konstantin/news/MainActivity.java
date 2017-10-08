@@ -1,11 +1,13 @@
 package com.example.konstantin.news;
 
 import android.os.AsyncTask;
+import android.renderscript.Sampler;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,16 +24,18 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView StoriesRecyclerView;
     private List<GalleryItem> mItems = new ArrayList<>();
+
+    private List<SliderUtils> imgUrl = new ArrayList<>();
+
     private ViewPager viewPager;
+    ViewPagerAdapter viewPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        viewPager=(ViewPager)findViewById(R.id.viewPager);
-        ViewPagerAdapter viewPagerAdapter=new ViewPagerAdapter(this);
-        viewPager.setAdapter(viewPagerAdapter);
+        viewPager = (ViewPager) findViewById(R.id.viewPager);
 
         TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
         tabHost.setup();
@@ -95,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
         public void onBindViewHolder(StoriesHolder holder, final int position) {
             GalleryItem GalleryItem = mGalleryItems.get(position);
             Picasso.with(MainActivity.this).load(GalleryItem.getUrl()).into(holder.imageItemView);
-
             holder.title.setText(mGalleryItems.get(position).getTitle());
             holder.sourse.setText(mGalleryItems.get(position).getSource());
             holder.time.setText(mGalleryItems.get(position).getTime());
@@ -119,11 +122,20 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(List<GalleryItem> gallery_items) {
             mItems = gallery_items;
+            imgUrl = Fetcher.getSlImg();
             setUpAdapter();
+            setUpSliderAdapter();
+
         }
     }
 
     private void setUpAdapter() {
         StoriesRecyclerView.setAdapter(new StoriesAdapter(mItems));
     }
+
+    private void setUpSliderAdapter() {
+        viewPagerAdapter = new ViewPagerAdapter(MainActivity.this, imgUrl);
+        viewPager.setAdapter(viewPagerAdapter);
+    }
+
 }

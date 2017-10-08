@@ -8,6 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.squareup.picasso.Picasso;
+
+import java.util.List;
+
 /**
  * Created by Konstantin on 07.10.2017.
  */
@@ -15,15 +19,16 @@ import android.widget.ImageView;
 public class ViewPagerAdapter extends PagerAdapter {
     private Context context;
     private LayoutInflater layoutInflater;
-    private Integer[] images = {R.drawable.h, R.drawable.h, R.drawable.h};
+    private List<SliderUtils> sliderImgUrl;
 
-    public ViewPagerAdapter(Context context) {
+    public ViewPagerAdapter(Context context,List<SliderUtils> sliderImgUrl) {
         this.context = context;
+        this.sliderImgUrl=sliderImgUrl;
     }
 
     @Override
     public int getCount() {
-        return images.length;
+        return sliderImgUrl.size();
     }
 
     @Override
@@ -35,9 +40,12 @@ public class ViewPagerAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view=layoutInflater.inflate(R.layout.custom_layout,null);
-        ImageView imageView=view.findViewById(R.id.ivCustomLayout);
-        imageView.setImageResource(images[position]);
 
+        SliderUtils utils=sliderImgUrl.get(position);
+
+
+        ImageView imageView=view.findViewById(R.id.ivCustomLayout);
+        Picasso.with(context).load(utils.getSliderImageUrl()).into(imageView);
         ViewPager viewPager=(ViewPager) container;
         viewPager.addView(view,0);
         return view;

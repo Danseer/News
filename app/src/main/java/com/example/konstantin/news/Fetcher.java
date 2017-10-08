@@ -24,6 +24,12 @@ import okhttp3.Response;
 
 public class Fetcher {
     private static final String TAG = "Fetcher";
+    static List<SliderUtils> slImg = new ArrayList<>();
+
+    public static List<SliderUtils> getSlImg() {
+        return slImg;
+    }
+
 
     public String getJSONString(String URLSpec) throws IOException {
 
@@ -45,7 +51,7 @@ public class Fetcher {
 
             String jsonString = getJSONString(url);
             Log.e("url", url);
-             Log.e("jsonString", jsonString);
+            Log.e("jsonString", jsonString);
 
 
             parseItems(itemsList, jsonString);
@@ -64,14 +70,19 @@ public class Fetcher {
         for (int i = 0; i < usersJSONArray.length(); i++) {
             JSONObject userJSONObject = usersJSONArray.getJSONObject(i);
             GalleryItem item = new GalleryItem();
+            SliderUtils utils = new SliderUtils();
             item.setTitle(userJSONObject.getString("name"));
-            // Log.e("login ", item.getLogin());
             item.setUrl(userJSONObject.getString("cover"));
-            //Log.e("url_avatar ", item.getAvatarUrl());
+
+            if (true) {
+                utils.setSliderImageUrl(userJSONObject.getString("cover"));
+                slImg.add(utils);
+                Log.e("slImg ", utils.getSliderImageUrl());
+
+            }
+
             item.setSource(userJSONObject.getString("sourceId"));
-            //Log.e("id ", item.getId());
             item.setTime(userJSONObject.getString("date"));
-            //Log.e("id ", item.getId());
             items.add(item);
         }
 
