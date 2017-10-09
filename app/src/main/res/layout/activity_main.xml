@@ -13,6 +13,7 @@
         android:background="@color/colorBlack"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
+        app:navigationIcon="@android:drawable/ic_menu_agenda"
         app:title="@string/app_name" />
 
     <TabHost
@@ -34,13 +35,35 @@
             <FrameLayout
                 android:id="@android:id/tabcontent"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="@android:color/background_light">
 
                 <LinearLayout
                     android:id="@+id/stories"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/viewPager"
+                        android:layout_width="match_parent"
+                        android:layout_height="220dp"
+                        android:layout_marginTop="4dp">
+
+                    </android.support.v4.view.ViewPager>
+
+                    <LinearLayout
+                        android:id="@+id/sliderDots"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+
+                        android:layout_marginBottom="10dp"
+                        android:background="@color/colorBlack"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:orientation="horizontal">
+
+
+                    </LinearLayout>
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/rvStories"
