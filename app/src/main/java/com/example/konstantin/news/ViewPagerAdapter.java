@@ -27,15 +27,21 @@ public class ViewPagerAdapter extends PagerAdapter {
         this.sliderImgUrl=sliderImgUrl;
     }
 
+//-------------------------------------------------------------------------------------
+
     @Override
     public int getCount() {
         return sliderImgUrl.size();
     }
 
+//-------------------------------------------------------------------------------------
+
     @Override
     public boolean isViewFromObject(View view, Object object) {
         return view == object;
     }
+
+//-------------------------------------------------------------------------------------
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
@@ -60,10 +66,14 @@ public class ViewPagerAdapter extends PagerAdapter {
         return view;
     }
 
+//------------------------------------------------------------------------------------
+
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
         ViewPager viewPager=(ViewPager)container;
         View view=(View)object;
         viewPager.removeView(view);
     }
+
+//-------------------------------------------------------------------------------------
 }
