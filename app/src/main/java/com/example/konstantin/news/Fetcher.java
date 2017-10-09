@@ -118,9 +118,9 @@ public class Fetcher {
         long day = Razn / 86400;
         long hours = Razn / 3600;
         Long minutes = Razn / 60;
-        if (day > 0) result = String.valueOf(day) + " days ago";
-        else if (hours > 0) result = String.valueOf(hours) + " hours ago";
-        else result = String.valueOf(minutes) + " min ago";
+        if (day > 0) result = "-  "+String.valueOf(day) + " days ago";
+        else if (hours > 0) result = "-  "+String.valueOf(hours) + " hours ago";
+        else result = "-  "+String.valueOf(minutes) + " min ago";
         return result;
     }
 //---------------------------------------------------------------------------------------------
