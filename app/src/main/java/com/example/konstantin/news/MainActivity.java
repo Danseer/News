@@ -1,17 +1,20 @@
 package com.example.konstantin.news;
 
 import android.os.AsyncTask;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
 
@@ -32,6 +35,10 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
     ViewPagerAdapter viewPagerAdapter;
 
+    LinearLayout sliderDotsPanel;
+    private int dotsCount;
+    private ImageView[] dots;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +48,28 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(mActionBarToolbar);
 
         viewPager = (ViewPager) findViewById(R.id.viewPager);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                for (int i = 0; i < dotsCount; i++) {
+                    dots[i].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.non_active));
+                }
+                dots[position].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.active));
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+        sliderDotsPanel = (LinearLayout) findViewById(R.id.sliderDots);
+
 
         TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
         tabHost.setup();
@@ -67,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
         setUpAdapter();
 
         new FetchItemTask().execute();
+
 
     }
 
@@ -137,8 +167,20 @@ public class MainActivity extends AppCompatActivity {
             imgUrl = Fetcher.getSlImg();
             setUpAdapter();
             setUpSliderAdapter();
-Timer timer=new Timer();
-            timer.scheduleAtFixedRate(new myTimerClass(),2000,4000);
+
+            dotsCount = viewPagerAdapter.getCount();
+            dots = new ImageView[dotsCount];
+            for (int i = 0; i < dotsCount; i++) {
+                dots[i] = new ImageView(MainActivity.this);
+                dots[i].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.non_active));
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                params.setMargins(8, 0, 8, 0);
+                sliderDotsPanel.addView(dots[i], params);
+            }
+            dots[0].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.active));
+
+            Timer timer = new Timer();
+            timer.scheduleAtFixedRate(new myTimerClass(), 2000, 4000);
         }
     }
 
@@ -151,7 +193,8 @@ Timer timer=new Timer();
         viewPager.setAdapter(viewPagerAdapter);
     }
 
-    public class myTimerClass extends TimerTask{
+
+    public class myTimerClass extends TimerTask {
 
         @Override
         public void run() {
@@ -159,15 +202,12 @@ Timer timer=new Timer();
             MainActivity.this.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    int current= viewPager.getCurrentItem();
+                    int current = viewPager.getCurrentItem();
 
-                    if(current==imgUrl.size()-1) viewPager.setCurrentItem(0);
-                    else viewPager.setCurrentItem(current+1);
+                    if (current == imgUrl.size() - 1) viewPager.setCurrentItem(0);
+                    else viewPager.setCurrentItem(current + 1);
                 }
             });
-
-
         }
     }
-
 }
