@@ -19,6 +19,21 @@
         app:layout_constraintRight_toRightOf="parent" />
 
     <TextView
+        android:id="@+id/textView"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="51dp"
+        android:alpha="0.7"
+        android:background="@drawable/rounded_tv"
+        android:text="TOP"
+        android:textAlignment="center"
+        android:textColor="@android:color/background_light"
+        android:textSize="22sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/tvCustomLayoutTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
