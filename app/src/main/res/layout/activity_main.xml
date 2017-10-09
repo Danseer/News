@@ -55,9 +55,10 @@
                     <LinearLayout
                         android:id="@+id/sliderDots"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="20dp"
 
                         android:layout_marginBottom="10dp"
+                        android:background="@color/colorBlack"
                         android:gravity="center_vertical|center_horizontal"
                         android:orientation="horizontal">
 

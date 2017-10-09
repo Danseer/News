@@ -6,30 +6,33 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="15dp"
-    android:background="@android:color/white"
+    android:background="?android:attr/colorBackground"
     android:paddingBottom="10dp">
 
     <ImageView
         android:id="@+id/ivCustomLayout"
         android:layout_width="368dp"
         android:layout_height="250dp"
+        android:alpha="0.3"
+        android:background="?android:attr/colorBackground"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:srcCompat="@drawable/h"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:srcCompat="@drawable/h" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
         android:layout_marginRight="0dp"
-        android:layout_marginTop="51dp"
-        android:alpha="0.7"
+        android:layout_marginTop="20dp"
         android:background="@drawable/rounded_tv"
+        android:drawableLeft="@drawable/fff"
         android:text="TOP"
         android:textAlignment="center"
-        android:textColor="@android:color/background_light"
+        android:textColor="@android:color/black"
         android:textSize="22sp"
+        android:textStyle="bold"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -39,13 +42,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="90dp"
 
-        android:alpha="0.7"
-        android:background="?android:attr/colorBackground"
         android:paddingLeft="10dp"
         android:text="Title of Article"
         android:textColor="@android:color/background_light"
         android:textSize="24sp"
-        android:textStyle="bold|italic"
+        android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="8dp" />
 
@@ -56,8 +57,7 @@
         android:layout_marginLeft="2dp"
         android:layout_marginStart="2dp"
         android:layout_marginTop="10dp"
-        android:alpha="0.7"
-        android:background="?android:attr/colorBackground"
+        android:autoLink="web"
         android:paddingLeft="10dp"
         android:text="TextView"
         android:textColor="@android:color/holo_blue_bright"
@@ -73,10 +73,8 @@
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:alpha="0.7"
-        android:background="?android:attr/colorBackground"
         android:text="TextView"
-        android:textColor="@android:color/background_light"
+        android:textColor="@android:color/darker_gray"
         android:textSize="12sp"
         app:layout_constraintLeft_toRightOf="@+id/tvCustomLayoutSource"
         app:layout_constraintTop_toBottomOf="@+id/tvCustomLayoutTitle" />
